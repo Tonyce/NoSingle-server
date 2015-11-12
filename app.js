@@ -11,6 +11,7 @@ var server = require('http').createServer()
 	, wss = new WebSocketServer({ server: server })
 	, express = require('express')
     , bodyParser = require('body-parser')
+    , markdown = require('jstransformer-markdown')
 	, app = express()
 	, port = 3060;
 var tokenHandler = require('./tokenHandler');

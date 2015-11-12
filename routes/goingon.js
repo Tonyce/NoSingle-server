@@ -26,11 +26,6 @@ router.get('/', function(req, res, next) {
 	if (!isRefresh && !indexId && !lastId) { // first in
 
 	}
-	let errHapped = {
-		errMsg: "客户端出了点bug", 
-		info: `requset with: ${req.originalUrl} , ${JSON.stringify(query)}`
-	}
-	// req.status(400).send(errHapped)
 	let data = {
 		"list": [
 			{
@@ -74,7 +69,14 @@ router.get('/', function(req, res, next) {
 			"http://static.iweekapi.com/uploads/2015/08/east-ep-a81-4325116.jpg"
 		]
 	}
-	res.send(data)
+	res.send(data);
+	return;
+	let errHapped = {
+		errMsg: "客户端出了点bug", 
+		info: `requset with: ${req.originalUrl} , ${JSON.stringify(query)}`
+	}
+	req.status(400).send(errHapped)
+	
 });
 
 module.exports = router;
