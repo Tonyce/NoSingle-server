@@ -80,8 +80,8 @@ app.use(function (req, res, next) {
 	next();
 })
 
-app.use('/views', viewsRouter)
 app.use('/goingon', goingonRouter);
+app.use('/views', viewsRouter)
 app.use('/token', tokenRouter);
 
 app.use(function(req, res, next) {

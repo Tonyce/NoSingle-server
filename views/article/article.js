@@ -1,6 +1,14 @@
 var infoButton = document.getElementById('info');
-    infoButton.onclick = function () {
-        window.webkit.messageHandlers.myApp.postMessage({"type":"author", "message":"Hello there", "email":"382361909@qq.com"});
+    infoButton.onclick = function (e, elem) {
+        var authorId = this.getAttribute("author-id")
+        var authorName = this.getAttribute("author-name")
+        var message = {
+            "type":"author", 
+            "authorId": authorId,
+            "name": authorName || "tt",
+            "imageUrl":"Hello there"
+        }
+        window.webkit.messageHandlers.myApp.postMessage(message);
     }
 
 var thumbUpButton = document.getElementById('thumbUp');

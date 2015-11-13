@@ -3,33 +3,48 @@
 
 var express = require('express');
 var router = express.Router();
+var Goingon = require('../model/goingon');
 
-/* GET home page. */
-//[100, 99,..50], [50, 49,..1]
 router.get('/', function(req, res, next) {
-	console.log("/*****************************/")
-	console.log(req.hostname, req.originalUrl, req.path, req.params, req.query)
-	// localhost /goingon?indexId=3&isRefresh=1&lastId=0 /goingon {} { indexId: '3', isRefresh: '1', lastId: '0' }
-	// { indexId: '3', isRefresh: '1', lastId: '0' } isRefresh 1: true, 0: false
 	let query = req.query
+	console.log(query)
 	let indexId = query.indexId;
 	let lastId = query.lastId;
 	let isRefresh = query.isRefresh;
-	if (isRefresh === '1') { //刷新操作
-		//select from _id > indexid
+	let mongoId = "";
+	let isGreat = "";
+	if (isRefresh === '1') { //刷新操作 //select from _id > indexid
+		mongoId = new _ObjectID(indexId);
+		isGreat = true;
 	}
-
-	if (isRefresh === '0') {	 //加载更多
-		//select from _id < lastId 
+	if (isRefresh === '0') {	 //加载更多 //select from _id < lastId 
+		mongoId = new _ObjectID(lastId );
+		isGreat = false;
 	}
+	// first in
+	let goingon = new Goingon(mongoId, "");
+	goingon.find(isGreat, function () {
+		let content = goingon.content
+		let data = {}
+		data.list = content
+		console.log(`content:  ${content}`)
+		data.images = [
+			"http://static.iweekapi.com/uploads/2015/09/east-ep-a31-2450351.jpg",
+			"http://static.iweekapi.com/uploads/2015/08/640x250.jpg",
+			"http://static.iweekapi.com/uploads/2015/08/east-ep-a81-4325116.jpg"
+		]
+		res.send(data);
+		return;
+	})
+});
 
-	if (!isRefresh && !indexId && !lastId) { // first in
+module.exports = router;
 
-	}
-	let data = {
+/*
+let data = {
 		"list": [
 			{
-				"infoTitle": "haosou",
+				"infoTitle": "haosouhao",
 				"infoUrl": "http://haosou.com",
 				"isWebCell": false,
 				"userImage": "https://tower.im/assets/default_avatars/winter.jpg",
@@ -71,12 +86,4 @@ router.get('/', function(req, res, next) {
 	}
 	res.send(data);
 	return;
-	let errHapped = {
-		errMsg: "客户端出了点bug", 
-		info: `requset with: ${req.originalUrl} , ${JSON.stringify(query)}`
-	}
-	req.status(400).send(errHapped)
-	
-});
-
-module.exports = router;
+ */

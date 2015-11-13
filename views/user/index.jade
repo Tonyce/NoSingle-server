@@ -1,8 +1,49 @@
 doctype html
 html
 	head
-		title user
-		//- link(rel='stylesheet', href='/stylesheets/style.css')
+		meta(charset='utf-8')
+		meta(name='viewport' content='width=device-width, initial-scale=1,minimum-scale=1.0, maximum-scale=1.0')
+		title= id
+		style
+			include ../main.css
+			include user.css
 	body
-		//- block content
-		h1 user
+		include user.svg
+		header
+		content
+			.flex-layout.item
+				.icon-container.center
+					svg.icon.thumb_up(style={fill: '#9e9e9e'})
+						use(xlink:href='#icon-quill')
+				.cmn-t-underline
+					p 别人装饰了你的梦别人装饰了你的梦别人装饰了你的梦别
+					p 人装饰了你的梦别人装饰了你的梦别人装饰
+					p 了你的梦别人装饰了你的梦别人装饰了你的梦别人装饰了你的梦别人装饰了你的梦;
+			.flex-layout.item
+				.icon-container.center
+					svg.icon.thumb_up(style={fill: '#9e9e9e'})
+						use(xlink:href='#icon-profile')
+				.cmn-t-underline
+					p fjakfakfjakslfdja;
+			.flex-layout.item
+				.icon-container.center
+					svg.icon.thumb_up(style={fill: '#9e9e9e'})
+						use(xlink:href='#icon-location')
+				.cmn-t-underline
+					p fjakfakfjakslfdja;
+			.flex-layout.item
+				.icon-container.center
+					svg.icon.thumb_up(style={fill: '#9e9e9e'})
+						use(xlink:href='#icon-ic_thumb_up_black_24px')
+				.cmn-t-underline
+					p fjakfakfjakslfdja;
+			//- .cmn-t-underline
+			//- 	p fjakfakfjakslfdja;
+			//- .cmn-t-underline
+			//- 	p fjakfakfjakslfdja;
+			//- .cmn-t-underline
+			//- 	p fjakfakfjakslfdja;
+			//- h4 user
+
+		script
+			include user.js

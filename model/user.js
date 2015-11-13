@@ -14,9 +14,9 @@ class User {
 		collection.find({"_id": this.id}).toArray(function(err, docs) {
 			// assert.equal(err, null);
 			// assert.equal(2, docs.length);
-			console.log("Found the following records");
-			console.dir(docs);
-			this.userInfo = docs;
+			// console.log("Found the following records");
+			// console.dir(docs);
+			this.userInfo = docs[0];
 			callback();
 		});
 	}
