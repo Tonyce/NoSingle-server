@@ -2,13 +2,13 @@ var infoButton = document.getElementById('info');
     infoButton.onclick = function (e, elem) {
         var authorId = this.getAttribute("author-id")
         var authorName = this.getAttribute("author-name")
-        var message = {
-            "type":"author", 
-            "authorId": authorId,
+        var authorBaseInfo = {
+            "type":"user", 
+            "userId": authorId,
             "name": authorName || "tt",
             "imageUrl":"Hello there"
         }
-        window.webkit.messageHandlers.myApp.postMessage(message);
+        window.webkit.messageHandlers.myApp.postMessage(authorBaseInfo);
     }
 
 var thumbUpButton = document.getElementById('thumbUp');

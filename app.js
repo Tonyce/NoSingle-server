@@ -22,6 +22,7 @@ var ObjectID = require('mongodb').ObjectID;
 var viewsRouter = require('./routes/views')
 var tokenRouter = require('./routes/token');
 var goingonRouter = require('./routes/goingon');
+var focusRouter = require('./routes/focus');
 
 global._tokenHandler = tokenHandler;
 global._ObjectID = ObjectID;
@@ -80,9 +81,11 @@ app.use(function (req, res, next) {
 	next();
 })
 
-app.use('/goingon', goingonRouter);
-app.use('/views', viewsRouter)
 app.use('/token', tokenRouter);
+app.use('/goingon', goingonRouter);
+app.use('/focus', focusRouter);
+app.use('/views', viewsRouter)
+
 
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
