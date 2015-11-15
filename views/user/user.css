@@ -65,7 +65,7 @@ header {
     width: 36px;
     border-radius: 18px;
     margin: 0 0 0 10px;
-    border-color:  #9E9E9E;
+    border-color:  #212121;
 
 }
 
@@ -82,4 +82,14 @@ p {
 }
 .item {
 	margin-top: 10px;
+}
+
+/*****/
+.add {
+	margin: 0;
+	background: #2196F3;
+	height: 60px;
+	padding-right: 15px;
+    -webkit-justify-content: flex-end;
+    justify-content: flex-end;
 }

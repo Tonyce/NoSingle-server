@@ -2,11 +2,14 @@ var infoButton = document.getElementById('info');
     infoButton.onclick = function (e, elem) {
         var authorId = this.getAttribute("author-id")
         var authorName = this.getAttribute("author-name")
+        var authorImage = this.getAttribute("author-image")
+        var authorWord = this.getAttribute("author-word")
         var authorBaseInfo = {
             "type":"user", 
             "userId": authorId,
-            "name": authorName || "tt",
-            "imageUrl":"Hello there"
+            "name": authorName,
+            "imageUrl": authorImage,
+            "believeWord": authorWord
         }
         window.webkit.messageHandlers.myApp.postMessage(authorBaseInfo);
     }

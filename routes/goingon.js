@@ -27,7 +27,7 @@ router.get('/', function(req, res, next) {
 		let content = goingon.content
 		let data = {}
 		data.list = content
-		console.log(`content:  ${content}`)
+		// console.log(`content:  ${content}`)
 		data.images = [
 			"http://static.iweekapi.com/uploads/2015/09/east-ep-a31-2450351.jpg",
 			"http://static.iweekapi.com/uploads/2015/08/640x250.jpg",
@@ -55,56 +55,53 @@ router.get('/:sort', function(req, res, next) {
 	let query = req.query
 	let data = {
 		"list": [
-			{
-			    "_id" : "564498de631c99b8f707a339",
-			    "type" : "article",
-			    "id" : "56444350631c99b8f707a337",
-			    "infoTitle" : "yahoo",
-			    "infoUrl" : "http://yahoo.com",
-			    "isWebCell" : false,
-			    "userImage" : "https://tower.im/assets/default_avatars/cloud.jpg",
-			    "time" : "",
-			    "content" : ""
-			},
-
-			{
-			    "_id" : "564498e8631c99b8f707a33a",
-			    "type" : "user",
-			    "id" : "56444350631c99b8f707a337",
-			    "infoTitle" : "yahoo",
-			    "infoUrl" : "http://yahoo.com",
-			    "isWebCell" : false,
-			    "userImage" : "https://tower.im/assets/default_avatars/cloud.jpg",
-			    "time" : "",
-			    "content" : ""
-			},
-
-			{
-			    "_id" : "564498f4631c99b8f707a33b",
-			    "type" : "user",
-			    "id" : "5640e3522bde38033066758d",
-			    "infoTitle" : "google",
-			    "infoUrl" : "http://google.com",
-			    "isWebCell" : true,
-			    "userImage" : "https://tower.im/assets/default_avatars/cloud.jpg",
-			    "time" : "",
-			    "content" : "",
-			    "htmlStr" : "<html><head><title>test</title><style>* {}</style></head><body style=\"background: red;\"><div style=\"margin: 10px 10px; padding: 0 6px;\"><div style=\"font-size:10; text-align: center; width: 47px; border-radius: 10px; border: solid 1px #278eff; color: #278eff; padding-top: 1px; margin-bottom: 6px\">标签</div><div style=\"font-size: 13\">天天天向上</div><div style=\"font-size: 13\">好好学习</div></div></body></html>"
-			},
-
-			{
-			    "_id" : "56449916631c99b8f707a33c",
-			    "type" : "article",
-			    "id" : "56444350631c99b8f707a337",
-			    "infoTitle" : "haosouhao",
-			    "infoUrl" : "http://haosou.com",
-			    "isWebCell" : false,
-			    "userImage" : "https://tower.im/assets/default_avatars/winter.jpg",
-			    "time" : "",
-			    "content" : ""
-			}
-			
-		]
+					{
+			            "_id": "56449916631c99b8f707a33c",
+			            "label":"诗词",
+			            "isWebCell": false,
+			            "time": "",
+			            "type": "article",
+			            "typeId": "56444350631c99b8f707a337",
+			            "userName": "tt",
+			            "userImage": "https://tower.im/assets/default_avatars/winter.jpg",
+			            "content": "看风景的人在看你。明月装饰了你的窗子。。。"
+			        },
+			        {
+			            "_id": "564498f4631c99b8f707a33b",
+			            "label":"用户",
+			            "isWebCell": true,
+			            "webCellHeight": 150,
+			            "time": "",
+			            "type": "user",
+			            "typeId": "5640e3522bde38033066758d",
+			            "userName": "TTang",
+			            "userImage": "https://tower.im/assets/default_avatars/cloud.jpg",
+			            "htmlStr": "<html><head><title>test</title><style>* {}</style></head><body style=\"background: red;\"><div style=\"margin: 10px 10px; padding: 0 6px;\"><div style=\"font-size:10; text-align: center; width: 47px; border-radius: 10px; border: solid 1px #278eff; color: #278eff; padding-top: 1px; margin-bottom: 6px\">标签</div><div style=\"font-size: 13\">天天天向上</div><div style=\"font-size: 13\">好好学习</div></div></body></html>"
+			        },
+			        {
+			            "_id": "564498e8631c99b8f707a33a",
+			            "label":"用户",
+			            "isWebCell": false,
+			            "time": "",
+			            "type": "user",
+			            "typeId": "56444350631c99b8f707a337",
+			            "userName": "tonyce",
+			            "userImage": "https://tower.im/assets/default_avatars/nightfall.jpg",
+			            "content": "坚持梦想，万一实现了呢。。。"
+			        },
+			        {
+			            "_id": "564498de631c99b8f707a339",
+			            "label":"科技",
+			            "isWebCell": false,
+			            "time": "",
+			            "type": "article",
+			            "typeId": "56444350631c99b8f707a337",
+			            "userName": "jjing",
+			            "userImage": "https://tower.im/assets/default_avatars/cloud.jpg",
+			            "content": "你站在桥上看风景，看风景的人在看你。。。"
+			        }
+						
+				]
 	}
 	res.send(data)
 });
@@ -112,51 +109,3 @@ router.get('/:sort', function(req, res, next) {
 
 
 module.exports = router;
-
-/*
-let data = {
-		"list": [
-			{
-				"infoTitle": "haosouhao",
-				"infoUrl": "http://haosou.com",
-				"isWebCell": false,
-				"userImage": "https://tower.im/assets/default_avatars/winter.jpg",
-				"time": "",
-				"content": ""
-			},
-			{
-				"infoTitle": "baidu",
-				"infoUrl": "http://baidu.com",
-				"isWebCell": false,
-				"userImage": "https://tower.im/assets/default_avatars/nightfall.jpg",
-				"time": "",
-				"content": ""
-			},
-			{
-				"infoTitle": "yahoo",
-				"infoUrl": "http://yahoo.com",
-				"isWebCell": false,
-				"userImage": "https://tower.im/assets/default_avatars/cloud.jpg",
-				"time": "",
-				"content": ""
-			},
-			{
-				"infoTitle": "google",
-				"infoUrl": "http://google.com",
-				"isWebCell": true,
-				"userImage": "https://tower.im/assets/default_avatars/cloud.jpg",
-				"time": "",
-				"content": "",
-				"htmlStr": "<html><head><title>test</title><style>* {}</style></head><body style=\"background: red;\"><div style=\"margin: 10px 10px; padding: 0 6px;\"><div style=\"font-size:10; text-align: center; width: 47px; border-radius: 10px; border: solid 1px #278eff; color: #278eff; padding-top: 1px; margin-bottom: 6px\">标签</div><div style=\"font-size: 13\">天天天向上</div><div style=\"font-size: 13\">好好学习</div></div></body></html>"
-			}
-			
-		],
-		"images": [
-			"http://static.iweekapi.com/uploads/2015/09/east-ep-a31-2450351.jpg",
-			"http://static.iweekapi.com/uploads/2015/08/640x250.jpg",
-			"http://static.iweekapi.com/uploads/2015/08/east-ep-a81-4325116.jpg"
-		]
-	}
-	res.send(data);
-	return;
- */
