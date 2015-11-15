@@ -60,7 +60,7 @@ header {
 .icon-container {
     /*-webkit-tap-highlight-color: rgba(0, 0, 0, 0);*/
     border-style: solid;
-    border-width: 1px;
+    border-width: 0.5px;
     /*border: solid 1px;*/
     height: 36px;
     width: 36px;
