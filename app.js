@@ -19,10 +19,11 @@ var tokenHandler = require('./tokenHandler');
 var MongoClient = require('mongodb').MongoClient
 var ObjectID = require('mongodb').ObjectID;
 
-var viewsRouter = require('./routes/views')
 var tokenRouter = require('./routes/token');
 var goingonRouter = require('./routes/goingon');
 var focusRouter = require('./routes/focus');
+var friendsRouter = require('./routes/friends');
+var viewsRouter = require('./routes/views')
 
 global._tokenHandler = tokenHandler;
 global._ObjectID = ObjectID;
@@ -52,16 +53,22 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 // this middleware will be executed for every request to the app
 app.use(function (req, res, next) {
-/*
-	let headers = req.headers;
+    /*
+    let headers = req.headers;
 	let clientToken = headers["x-client-token"]
 	let tempToken = headers["x-authorization-temp-token"]
+    let authorizationToken = headers["authorization"]
 	let clientTokenInfo = tokenHandler.verifyClientToken(clientToken);
 
 	let tempTokenInfo = ""
+    let authorizationTokenInfo = ""
 	if (tempToken) {
 		tempTokenInfo = tokenHandler.verifyServerToken(tempToken)
 	}
+
+    if (authorizationToken) {
+        authorizationTokenInfo = tokenHandler.verifyServerToken(authorizationToken)
+    }
 
 	if (!tempTokenInfo && !clientTokenInfo) {
 		res.status(401).send({err: "Unauthorized"})
@@ -69,6 +76,7 @@ app.use(function (req, res, next) {
 	}
     req._clientTokenInfo = clientTokenInfo
     req._tempTokenInfo = tempTokenInfo
+    req._authorizationTokenInfo = authorizationTokenInfo
     */
 	// console.log('-------------------------------------------');
 	// console.log('Time: %d', Date.now(), req.ip);
@@ -83,7 +91,10 @@ app.use(function (req, res, next) {
 
 app.use('/token', tokenRouter);
 app.use('/goingon', goingonRouter);
+
+// need _authorizationTokenInfo
 app.use('/focus', focusRouter);
+app.use('/friends', friendsRouter)
 app.use('/views', viewsRouter)
 
 

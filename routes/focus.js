@@ -10,17 +10,20 @@ router.get('/', function(req, res, next) {
 		{
 			"_id":"fdsdf",
 			"name":"tt",
-			"imageUrl":""
+			"imageUrl":"https://tower.im/assets/default_avatars/nightfall.jpg",
+			"believeWord" : "好好学习，天天向上"
 		},
 		{
 			"_id":"fdsdf",
 			"name":"tonyce",
-			"imageUrl":""
+			"imageUrl":"https://tower.im/assets/default_avatars/cloud.jpg",
+			"believeWord" : "好好学习，天天向上"
 		},
 		{
 			"_id":"fdsdf",
 			"name":"jjing",
-			"imageUrl":""
+			"imageUrl":"https://tower.im/assets/default_avatars/nightfall.jpg",
+			"believeWord" : "好好学习，天天向上"
 		}
 	]
   	res.send(userBaseInfos);
