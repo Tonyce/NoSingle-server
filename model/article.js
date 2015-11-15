@@ -28,7 +28,7 @@ class Article {
 				"userImage" : "https://tower.im/assets/default_avatars/winter.jpg",
 				"believeWord":"好好学习，天天向上"
 			}
-			this.content = article.content;
+			// this.content = article.content;
 
 			callback();
 		});
