@@ -10,6 +10,7 @@ header {
   width: 0;
   /*width: 100%;*/
   flex-grow:1;
+  -webkit-flex-grow: 1;
   transition: width 1s;
   margin: 10px;
   padding: 10px 0;
