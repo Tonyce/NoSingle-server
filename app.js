@@ -94,7 +94,7 @@ app.use('/goingon', goingonRouter);
 
 // need _authorizationTokenInfo
 app.use('/focus', focusRouter);
-app.use('/friends', friendsRouter)
+app.use('/chat', friendsRouter)
 app.use('/views', viewsRouter)
 
 
