@@ -1,0 +1,154 @@
+body {
+	font-weight:lighter;
+	margin: 0;
+	padding: 0;
+}
+
+.layout {
+  	/*box-sizing: border-box;*/
+  	display: -webkit-flex;
+	display: flex; 
+}
+
+.row {
+  -webkit-flex-direction: row;
+          flex-direction: row; 
+}
+
+.column {
+	-webkit-flex-direction: column;
+          	flex-direction: column; 
+}
+.column-reverse {
+	-webkit-flex-direction: column-reverse ;
+          	flex-direction: column-reverse ; 	
+}
+
+.layout-padding {
+	padding: 8px; 
+}
+
+.layout-margin {
+		margin: 8px; 
+	}
+
+	#tmpToolbar p {
+		color: #fff;
+		font-size: 1.2em;
+	}
+
+.box {
+
+	border-bottom:1px solid #eeeeee;
+	/*cursor: pointer;*/
+		/*transition-property: box-shadow, background-color, transform;*/
+		/*transition-duration: 0.4s, 0.4s, 0.4s;*/
+}
+/*.box:hover {
+	color: #fff;
+	z-index: 20;
+	background: #ff7b29;
+	background: #9E9E9E;
+	border-radius: 50%;
+	border:0px;
+	box-shadow: 0 5px 5px -1px #BDBDBD;
+	-webkit-transform: translate(0px,-5px);
+	-webkit-transform-origin: 100% 100%;
+	transform: translate(0px, -5px);
+	transform-origin: 100% 100%;
+}*/
+
+.center {
+	-webkit-justify-content: center;
+      		justify-content: center; 
+		-webkit-align-items: center;
+      			align-items: center;
+}
+
+.item-center {
+	-webkit-align-items: center;
+			align-items: center;
+}
+
+.space-around {
+	-webkit-justify-content: space-around;
+    		justify-content: space-around; 
+}
+
+section {
+	margin-left: 5%;
+	max-width:80%;
+	min-width:80%;
+}
+
+table {
+	padding-left: 20px;
+	font-size:0.8em;
+}
+
+p {
+	font-weight:lighter;
+}
+
+.box p {
+	font-size:1em;
+}
+
+.willFiexdBtn {
+	min-width:100px; 
+	min-height:100px; 
+	border-radius: 50%; 
+	position: relative;
+}
+
+#id {
+	/*display: flex;*/
+}
+
+#title {
+	min-height: 100px;
+}
+
+#fixedTopView {
+	top: 0;
+	padding-top: 10px;
+	color: #fff;
+	position:fixed;
+	width: 100%;
+	z-index:100;
+	background-color:#2196F3;
+}
+#tmpToolbar {
+	padding: 0 20px;
+}
+#content {
+	padding: 40px 0;
+}
+
+.boxShadow {
+	box-shadow: 0px 5px 5px -4px gray;
+}
+
+#meImage { 
+	/*position:relative;*/
+	height: 1px;
+	width: 100%;
+	z-index: 200;			
+
+}
+
+.meImage {
+	margin-right: 20px;
+	float: right; 
+	height: 60px; 
+	top: -40px; 
+	position: relative;
+	border-radius: 50%;
+	border: solid 2px #ffffff; 
+}
+
+#sendEmail{
+	color: #2196F3;
+	margin: 10px; 
+	font-size: 0.8em;
+}

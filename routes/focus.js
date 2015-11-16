@@ -4,6 +4,16 @@
 var express = require('express');
 var router = express.Router();
 // var Article = require('../model/article');
+// 
+router.use(function (req, res, next) {
+	// let headers = req.headers;
+    // console.log('headers:', headers);
+    // if (req._authorizationToken) {
+    	next();	
+    // }else {
+    // 	req.render('error')
+    // }
+})
 // /* GET home page. */
 router.get('/', function(req, res, next) {
 	var userBaseInfos = [

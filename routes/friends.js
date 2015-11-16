@@ -4,6 +4,15 @@
 var express = require('express');
 var router = express.Router();
 
+router.use(function (req, res, next) {
+	// let headers = req.headers;
+    // console.log('headers:', headers);
+    // if (req._authorizationToken) {
+    	next();	
+    // }else {
+    // 	req.render('error')
+    // }
+})
 router.get('/friends', function(req, res, next) {
 	var friends = [
 		{

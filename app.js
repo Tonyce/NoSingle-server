@@ -14,18 +14,19 @@ var server = require('http').createServer()
     , markdown = require('jstransformer-markdown')
 	, app = express()
 	, port = 3060;
-var tokenHandler = require('./tokenHandler');
 
 var MongoClient = require('mongodb').MongoClient
 var ObjectID = require('mongodb').ObjectID;
 
+var checkToken = require('./checkToken');
 var tokenRouter = require('./routes/token');
 var goingonRouter = require('./routes/goingon');
 var focusRouter = require('./routes/focus');
 var friendsRouter = require('./routes/friends');
+var meRouter = require('./routes/me');
 var viewsRouter = require('./routes/views')
 
-global._tokenHandler = tokenHandler;
+// global._tokenHandler = tokenHandler;
 global._ObjectID = ObjectID;
 global._db = "";
 global._dataBase = "NoSingle";
@@ -52,49 +53,15 @@ app.set('view engine', 'jade');
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 // this middleware will be executed for every request to the app
-app.use(function (req, res, next) {
-    /*
-    let headers = req.headers;
-	let clientToken = headers["x-client-token"]
-	let tempToken = headers["x-authorization-temp-token"]
-    let authorizationToken = headers["authorization"]
-	let clientTokenInfo = tokenHandler.verifyClientToken(clientToken);
-
-	let tempTokenInfo = ""
-    let authorizationTokenInfo = ""
-	if (tempToken) {
-		tempTokenInfo = tokenHandler.verifyServerToken(tempToken)
-	}
-
-    if (authorizationToken) {
-        authorizationTokenInfo = tokenHandler.verifyServerToken(authorizationToken)
-    }
-
-	if (!tempTokenInfo && !clientTokenInfo) {
-		res.status(401).send({err: "Unauthorized"})
-		return 
-	}
-    req._clientTokenInfo = clientTokenInfo
-    req._tempTokenInfo = tempTokenInfo
-    req._authorizationTokenInfo = authorizationTokenInfo
-    */
-	// console.log('-------------------------------------------');
-	// console.log('Time: %d', Date.now(), req.ip);
-	// console.log('-------------------------------------------');
-	// console.log('headers:', headers);
-	// console.log('-------------------------------------------');
-	// console.log('clientTokenInfo:', clientTokenInfo);
-	// console.log('-------------------------------------------');
-	// console.log(tempTokenInfo);
-	next();
-})
-
+// app.use(checkToken)
 app.use('/token', tokenRouter);
 app.use('/goingon', goingonRouter);
 
 // need _authorizationTokenInfo
 app.use('/focus', focusRouter);
-app.use('/chat', friendsRouter)
+app.use('/chat', friendsRouter);
+app.use('/me', meRouter);
+
 app.use('/views', viewsRouter)
 
 

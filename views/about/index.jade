@@ -1,0 +1,78 @@
+doctype html
+html
+	head
+		meta(charset='utf-8')
+		meta(name='viewport' content='width=device-width, initial-scale=1,minimum-scale=1.0, maximum-scale=1.0')
+		title About
+		style
+			include about.css
+	body
+		#fixedTopView.layout.boxShadow 
+			#tmpToolbar.layout.item-center(style={overflow: 'hidden', height: '60px'}) 努力，只为能够真实的存在！
+		#meImage(style={top: '60px', position: 'fixed'})
+			img.meImage(src="http://tonyce-web.oss-cn-hangzhou.aliyuncs.com/me-small.jpg")
+
+		#content(style={position: 'relative', padding: '0 10px'})
+			.box
+				p 我的名片：
+				table
+					tr
+						td 姓名:
+						td 谷传堂
+						td name: 
+						td Tonyce.Gu
+					tr
+						td 身高:
+						td 178cm
+						td 体重:
+						td 70kg
+				table
+					tr
+						td 邮箱:
+						td D_ttang@163.com <span id="sendEmail">给我发邮件</span>
+					tr
+						td 专业：
+						td 资源环境与城乡规划管理（已随时间而去）
+				table
+					tr
+						td 自我评价：
+						td 无聊，无趣。</br>有梦想，有耐心，有原则。</br>专注喜欢的事儿。
+					tr
+						td(style={width:"80px"}) 我说：
+						td 人生最大的失败莫过于</br>变成了自己当初厌恶的人...
+			.box
+				p 我的学校：
+				table 
+					tr
+						td 小学:
+						td 村里的小学（已随时代而去）
+					tr
+						td 初中：
+						td 镇里的一中（李营一中）
+					tr
+						td 高中:
+						td 市里的实验高中（济宁市实验中学）
+					tr
+						td 复读高中：
+						td 铁轨旁的学校遗址（济宁市大唐中学）
+					tr
+						td 大学：
+						td 省里的科技大学（山东科技大学）
+			.box
+				p 我的...
+				table
+					tr
+						td 个人比较平常，截止到此时，还没有获得过什么荣誉，也没有受到什么处分。。。
+			.box
+
+			br
+			br
+			br
+			br
+			br
+			br
+			br
+
+		script
+			include about.js
+		
