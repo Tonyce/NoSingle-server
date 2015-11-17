@@ -1,0 +1,49 @@
+#achievements {
+	padding: 10px 0;
+}
+
+.cell {
+	border-bottom: solid 0.5px #BDBDBD;
+	margin:0px 0 0px 15px;
+	padding: 5px 15px 5px 5px;
+	font-size: small;
+}
+
+.labelC {
+	padding: 2px;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.label {
+	font-size: xx-small; 
+	text-align: center; 
+	font-weight: 600;
+	width: 45px; 
+	border-radius: 10px; 
+	border: solid 1px #278eff; 
+	color: #278eff; 
+	padding: 0.5px 1px;
+}
+.time {
+	font-size: x-small; 
+	text-align: center; 
+	color: #9E9E9E; 
+}
+
+.content {
+	margin: 5px 0;
+}
+
+.icons {
+	height: 30px;
+}
+.icon {
+    display: inline-block;
+    width: 1.2em;
+    height: 1.2em;
+    fill: #4FC3F7;
+    /*fill: currentColor;*/
+}
+span {
+	font-size: small;
+	padding: 0 8px 0 2px;
+}

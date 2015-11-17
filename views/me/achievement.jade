@@ -1,7 +1,39 @@
 doctype html
+- var achievements = [{"key": "a", "image":"d"},{"key": "b"},{"key": "c"}]
 html
 	head
+		meta(charset='utf-8')
+		meta(name="viewport" content="user-scalable=no")
+		meta(name='viewport' content='width=device-width, initial-scale=1,minimum-scale=1.0, maximum-scale=1.0')
 		title achievement
+		style
+			include ../main.css
+			include achievement.css
 	body
-		h1 achievement
+		//- h4 您的支持，将是我们竭尽全力的动力。。。
+		include achievement.svg
+		#achievements
+			each item in achievements
+				.cell.flex-layout.column(onclick="cellClick(this, event)" id= item.key)
+					.labelC.flex-layout.v-between.h-center
+						.label= '诗词'
+						.time 2012-12-21 12:23
+					.content.flex-layout.row
+						div 轻轻的我走了，正如我悄悄的来。。。轻轻的我走了，正如我悄悄的来。。。
+						if item.image
+							div(style={width: '150px'})
+						else
+							div(style={width: '50px'})
+					.icons.flex-layout.h-center
+						svg.icon
+							use(xlink:href='#icon-favorite_black')
+						span 2
+						svg.icon
+							use(xlink:href='#icon-thumb_up_black')
+						span 2
+						svg.icon
+							use(xlink:href='#icon-smile')
+						span 20
+		script
+			include achievement.js
 		
