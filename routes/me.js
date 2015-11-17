@@ -14,18 +14,22 @@ var router = express.Router();
 //     }
 // })
 // page
+router.get('/teams/:id', function(req, res, next) {
+	var id = req.params.id;
+  	res.render('me/teams');
+});
 router.get('/achievement/:id', function(req, res, next) {
 	var id = req.params.id;
 	res.render('me/achievement')
 });
+router.get('/about', function(req, res, next) {
+  	res.render('about');
+});
+
 router.get('/suggest/', function(req, res, next) {
 	res.render('me/suggest')
 });
 router.post('/suggest/', function(req, res, next) {
 	res.send({'ok':'ok'})
-});
-
-router.get('/about', function(req, res, next) {
-  	res.render('about');
 });
 module.exports = router;

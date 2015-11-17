@@ -1,6 +1,7 @@
 
 "use strict";
 
+var tokenHandler = require('../tokenHandler');
 var express = require('express');
 var router = express.Router();
 
@@ -48,7 +49,7 @@ router.get('/temp', function(req, res, next) {
 			let tempTokenInfo = {
 				tempUserId: tempUserId
 			}
-			let tempToken = _tokenHandler.signServerToken(tempTokenInfo)
+			let tempToken = tokenHandler.signServerToken(tempTokenInfo)
 			res.send({ tempToken: tempToken, token: "" });	
 		}else {
 			res.status(503).send(err)
@@ -56,26 +57,33 @@ router.get('/temp', function(req, res, next) {
 	}
 });
 
-router.get('/auth', function(req, res, next) {
-	let tempTokenInfo = {
-		userId: 1,
-		hello: "Hello" 
-	}
-	let tempToken = _tokenHandler.signServerToken(tempTokenInfo)
-	res.send({ tempToken: tempToken, token: "" });
-	// next()
-})
-
+// login register
 router.post('/auth', function (req, res) {
-    console.log(req.body.a)
-    console.log(req.body.a === true)
+    console.log("auth:", req.body)
+    let userName = req.body.userName;
+    let password = req.body.password;
     let tempTokenInfo = {
         tempUserId: 1,
-        hello: "Hello" 
+        hello: "temp" 
     }
-    let tempToken = _tokenHandler.signServerToken(tempTokenInfo)
-    res.send({ tempToken: tempToken, token: "" });
-    // next()
+    let tokenInfo = {
+        userId: 1,
+        hello: "auth",
+        userName: userName
+    }
+    let tempToken = tokenHandler.signServerToken(tempTokenInfo)
+    let authToken = tokenHandler.signServerToken(tokenInfo)
+    var result = { tempToken: tempToken, token: authToken }
+    res.send(result);
+});
+// logout
+router.get('/auth', function (req, res) {
+	// let tempTokenInfo = {
+ //        tempUserId: 1,
+ //        hello: "Hello" 
+ //    }
+ //    let tempToken = tokenHandler.signServerToken(tempTokenInfo)
+    res.send({ tempToken: "", token: "" });
 });
 module.exports = router;
 

@@ -26,7 +26,9 @@ var checkToken = function (req, res, next) {
 	}
     req._clientTokenInfo = clientTokenInfo
     req._tempTokenInfo = tempTokenInfo
-    req._authorizationTokenInfo = authorizationTokenInfo
+    if (authorizationToken && authorizationToken.userId) {
+   		req._authorizationTokenInfo = authorizationTokenInfo
+   	}
     
 	// console.log('-------------------------------------------');
 	// console.log('Time: %d', Date.now(), req.ip);
