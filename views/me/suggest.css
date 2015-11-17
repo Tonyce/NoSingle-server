@@ -1,3 +1,8 @@
+
+body {
+	margin: 5px;
+}
+
 textarea {
 	-webkit-appearance: none;
 	resize: none;
@@ -6,6 +11,7 @@ textarea {
 	flex-grow: 1;
 	-webkit-flex-grow: 1;
 	height: 120px;
+	font-size: 0.9em;
 }
 
 .btnContainer {
