@@ -1,7 +1,21 @@
 doctype html
 html
 	head
+		meta(charset='utf-8')
+		meta(name="viewport" content="user-scalable=no")
+		meta(name='viewport' content='width=device-width, initial-scale=1,minimum-scale=1.0, maximum-scale=1.0')
 		title suggest
+		style
+			include ../main.css
+			include suggest.css
 	body
-		h1 suggest
+		//- h4 您的支持，将是我们竭尽全力的动力。。。
+		.flex-layout.h-center
+			textarea#suggest(autofocus placeholder="您的支持，将是我们竭尽全力的动力。。。")
+		.btnContainer.flex-layout.h-center.v-between
+			#cancel.btn.center 取消
+			#commit.btn.center 提交
+		script
+			include suggest.js
+
 		

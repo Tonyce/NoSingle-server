@@ -64,6 +64,6 @@ homeInit();
 		alert("sendEmail")
 		console.log("sendEmail")
 		// window.location = "myprotocol://lala";
-		window.webkit.messageHandlers.myApp.postMessage({"message":"Hello there", "email":"382361909@qq.com"});
+		window.webkit.messageHandlers.about.postMessage({"message":"Hello there", "email":"382361909@qq.com"});
 	}
 })()

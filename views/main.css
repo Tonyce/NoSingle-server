@@ -50,6 +50,10 @@ body {
     -webkit-justify-content: center;
     justify-content: center;
 }
+.v-between {
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+}
 .h-center {
     -webkit-align-items: center;
     align-items: center;
