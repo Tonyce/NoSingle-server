@@ -1,9 +1,11 @@
 
 body {
+
 	margin: 5px;
 }
 
 textarea {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 	-webkit-appearance: none;
 	resize: none;
 	padding: 10px;
