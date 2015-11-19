@@ -8,9 +8,13 @@
 body {
     margin: 0 4px;
 }
+h1, h2, h3, h4, h5, h6 {
+    padding: 0 10px;
+}
 p {
     /*padding: 10px;*/
-    line-height: 22px;
+    padding: 0 10px;
+    line-height: 25px;
 }
 .icon {
     display: inline-block;
@@ -83,7 +87,7 @@ header .main {
     border-bottom: dotted 1px #2196F3;
 }
 .content {
-    padding: 10px;
+    /*padding: 10px;*/
 }
 
 .label {
