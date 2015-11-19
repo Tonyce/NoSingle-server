@@ -50,7 +50,14 @@ router.get('/temp', function(req, res, next) {
 				tempUserId: tempUserId
 			}
 			let tempToken = tokenHandler.signServerToken(tempTokenInfo)
-			res.send({ tempToken: tempToken, token: "" });	
+			let goodSet = {
+				"img": String.fromCharCode(59148),
+				"word":"赞一下", 
+				"href":"https://itunes.apple.com/cn/app/liu-li-xue-yuan/id978249810?mt=8",
+				"colorIndex": 5
+			}
+			// goodSet = null
+			res.send({ tempToken: tempToken, token: "", goodSet: goodSet});	
 		}else {
 			res.status(503).send(err)
 		}
@@ -59,7 +66,7 @@ router.get('/temp', function(req, res, next) {
 
 // login register
 router.post('/auth', function (req, res) {
-    console.log("auth:", req.body)
+    // console.log("auth:", req.body)
     let userName = req.body.userName;
     let password = req.body.password;
     let tempTokenInfo = {
@@ -78,11 +85,6 @@ router.post('/auth', function (req, res) {
 });
 // logout
 router.get('/auth', function (req, res) {
-	// let tempTokenInfo = {
- //        tempUserId: 1,
- //        hello: "Hello" 
- //    }
- //    let tempToken = tokenHandler.signServerToken(tempTokenInfo)
     res.send({ tempToken: "", token: "" });
 });
 module.exports = router;

@@ -53,7 +53,7 @@ app.set('view engine', 'jade');
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 // this middleware will be executed for every request to the app
-// app.use(checkToken)
+app.use(checkToken)
 app.use('/token', tokenRouter);
 app.use('/goingon', goingonRouter);
 

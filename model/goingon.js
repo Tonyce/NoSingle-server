@@ -53,7 +53,7 @@ class Goingon { //goingon  只保存快照
             "typeId": "5640e3522bde38033066758d",
             "userName": "TTang",
             "userImage": "https://tower.im/assets/default_avatars/cloud.jpg",
-            "htmlStr": "<html><head><title>test</title><style>* {}</style></head><body style=\"background: red;\"><div style=\"margin: 10px 10px; padding: 0 6px;\"><div style=\"font-size:10; text-align: center; width: 47px; border-radius: 10px; border: solid 1px #278eff; color: #278eff; padding-top: 1px; margin-bottom: 6px\">标签</div><div style=\"font-size: 13\">天天天向上</div><div style=\"font-size: 13\">好好学习</div></div></body></html>"
+            "htmlStr": "<html><head><title>test</title><style>* {}</style></head><body><div style=\"margin: 10px 10px; padding: 0 6px;\"><div style=\"font-size:10; text-align: center; width: 47px; border-radius: 10px; border: solid 1px #278eff; color: #278eff; padding-top: 1px; margin-bottom: 6px\">标签</div><div style=\"font-size: 13\">天天天向上</div><div style=\"font-size: 13\">好好学习</div></div></body></html>"
         },
         {
             "_id": "564498e8631c99b8f707a33a",
