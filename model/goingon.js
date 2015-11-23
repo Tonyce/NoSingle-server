@@ -2,36 +2,119 @@
 
 "use strict";
 
-class Goingon { //goingon  只保存快照
+var assert = require('assert');
 
-	constructor(id, content) {
-		this.id = id;
-		this.content = content;
-		this.collection = "goingon"
+const goingonCollection = "goingon";
+
+// _id
+// label(category)
+// isWebCell (Bool)
+// time
+// type
+// typeId
+// userId
+// userName
+// userImage
+// content
+// htmlStr
+
+
+class Goingon { //goingon  只保存快照
+	constructor(_id, type, typeId, userId, userName, userImage, content, isWebCell, htmlStr) {
+		if (_id) {
+            this._id = _id;    
+        }
+        
+        this.time = new Date();
+        this.type = type;
+        if (typeId instanceof _ObjectID) {
+            this.typeRef = new _DBRef(type, typeId);
+        }
+        this.userId = userId;
+
+        if (userName) {
+            this.userName = userName;    
+        }
+        if (userImage) {
+            this.userImage = userImage;
+        }
+        if (content) {
+            this.content = content;    
+        }
+        this.isWebCell = isWebCell || false;
+        if (isWebCell) {
+            this.htmlStr = htmlStr;
+        }
 	}
+
+
+    save (callback) {
+        if (this._id !== null) {
+            callback({err: "this._id !== null"})
+            return;
+        }
+        if ((this.typeRef instanceof _DBRef) == false) {
+            callback({err: "connot connect the ref"})
+            return;
+        }
+        let collection = _db.collection(goingonCollection);
+        collection.insertOne(this, (err, result) => {
+            assert.equal(err, null);
+            assert.equal(1, result.insertedCount);
+            this._id = result.insertedId;
+            callback()
+        });
+    }
+
+    upsert (callback) {
+        if ((this.typeRef instanceof _DBRef) == false) {
+            callback({err: "connot connect the ref"})
+            return;
+        }
+        let collection = _db.collection(goingonCollection);
+        collection.update({typeRef: this.typeRef}, {$set: this}, {upsert: true},(err, result) => {
+            assert.equal(err, null);
+            callback()
+        });
+    }
+
 	// Find some documents
-	find (isGreat, callback) {
-		let collection = _db.collection(this.collection);
+	static find (isGreat, _id, callback) {
+        let result = [];
+		let collection = _db.collection(goingonCollection);
 		let queryCondition = {}
 		if (isGreat) {
 			queryCondition = {
 				"_id": {
-					"$gt": this.id
+					"$gt": _id
 				}
 			}
 		}else if (this.id) {
 			queryCondition = {
 				"_id": {
-					"$lt": this.id
+					"$lt": _id
 				}
 			}
 		}
-		collection.find(queryCondition).sort({"_id": -1}).limit(20).toArray((err, docs) => {
-			// assert.equal(err, null);
-			// assert.equal(2, docs.length);
-			// console.log("Found the following records");
-			// console.dir(docs);
-			docs =  [
+        collection.find(queryCondition).sort({"_id": -1}).limit(20).toArray(
+            (err, docs) => {
+                assert.equal(err, null);
+                // console.log("Found the following records");
+                // console.dir(docs);
+    			callback(docs);
+		});
+	}
+}
+
+module.exports = Goingon;
+
+//collection.find(queryCondition).sort({"_id": -1}).limit(20).toArray((err, docs) => {
+            // assert.equal(err, null);
+            // assert.equal(2, docs.length);
+            // console.log("Found the following records");
+            // console.dir(docs);
+/*
+    docs =  [
         {
             "_id": "56449916631c99b8f707a33c",
             "label":"诗词",
@@ -78,10 +161,4 @@ class Goingon { //goingon  只保存快照
             "content": "你站在桥上看风景，看风景的人在看你。。。"
         }
     ]
-			this.content = docs;
-			callback();
-		});
-	}
-}
-
-module.exports = Goingon;
+*/

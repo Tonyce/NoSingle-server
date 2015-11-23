@@ -7,7 +7,7 @@ var Goingon = require('../model/goingon');
 
 router.get('/', function(req, res, next) {
 	let query = req.query
-	console.log(query)
+	// console.log(query)
 	let indexId = query.indexId;
 	let lastId = query.lastId;
 	let isRefresh = query.isRefresh;
@@ -22,11 +22,10 @@ router.get('/', function(req, res, next) {
 		isGreat = false;
 	}
 	// first in
-	let goingon = new Goingon(mongoId, "");
-	goingon.find(isGreat, function () {
-		let content = goingon.content
-		let data = {}
-		data.list = content
+	// let goingon = new Goingon(mongoId, "");
+	Goingon.find(isGreat, mongoId, function (docs) {
+		let data = {};
+		data.list = docs;
 		// console.log(`content:  ${content}`)
 		data.images = [
 			"http://static.iweekapi.com/uploads/2015/09/east-ep-a31-2450351.jpg",

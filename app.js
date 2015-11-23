@@ -17,6 +17,7 @@ var server = require('http').createServer()
 
 var MongoClient = require('mongodb').MongoClient
 var ObjectID = require('mongodb').ObjectID;
+var DBRef = require('mongodb').DBRef;
 
 var checkToken = require('./checkToken');
 var tokenRouter = require('./routes/token');
@@ -28,6 +29,7 @@ var viewsRouter = require('./routes/views')
 
 // global._tokenHandler = tokenHandler;
 global._ObjectID = ObjectID;
+global._DBRef = DBRef;
 global._db = "";
 global._dataBase = "NoSingle";
 var mongoUrl = 'mongodb://localhost:27017/NoSingle';
@@ -53,7 +55,7 @@ app.set('view engine', 'jade');
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 // this middleware will be executed for every request to the app
-// app.use(checkToken)
+app.use(checkToken)
 app.use('/token', tokenRouter);
 app.use('/goingon', goingonRouter);
 
@@ -78,9 +80,10 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
-        res.render('error', {
+        res.send({
             message: err.message,
-            error: err
+            error: err,
+            stack: err.stack
         });
     });
 }

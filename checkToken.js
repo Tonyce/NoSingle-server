@@ -3,22 +3,16 @@
 
 var tokenHandler = require('./tokenHandler');
 var checkToken = function (req, res, next) {
-    
+   
     let headers = req.headers;
 	let clientToken = headers["x-client-token"]
 	let tempToken = headers["x-authorization-temp-token"]
     let authorizationToken = headers["authorization"]
-	let clientTokenInfo = tokenHandler.verifyClientToken(clientToken);
-
-	let tempTokenInfo = ""
-    let authorizationTokenInfo = ""
-	if (tempToken) {
-		tempTokenInfo = tokenHandler.verifyServerToken(tempToken)
-	}
-
-    if (authorizationToken) {
-        authorizationTokenInfo = tokenHandler.verifyServerToken(authorizationToken)
-    }
+    
+	
+    let clientTokenInfo = clientToken ? tokenHandler.verifyClientToken(clientToken) : "";
+	let tempTokenInfo = tempToken ?  tokenHandler.verifyServerToken(tempToken) : "";
+    let authorizationTokenInfo = authorizationToken ? tokenHandler.verifyServerToken(authorizationToken) : "";
 
 	if (!tempTokenInfo && !clientTokenInfo) {
 		res.status(401).send({err: "Unauthorized"})
@@ -26,7 +20,8 @@ var checkToken = function (req, res, next) {
 	}
     req._clientTokenInfo = clientTokenInfo
     req._tempTokenInfo = tempTokenInfo
-    if (authorizationToken && authorizationToken.userId) {
+    // console.log(authorizationTokenInfo)
+    if (authorizationTokenInfo && authorizationTokenInfo.userId) {
    		req._authorizationTokenInfo = authorizationTokenInfo
    	}
     

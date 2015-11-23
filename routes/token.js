@@ -1,9 +1,12 @@
 
 "use strict";
 
+var assert = require('assert');
 var tokenHandler = require('../tokenHandler');
 var express = require('express');
 var router = express.Router();
+
+var User = require('../model/user');
 
 var tempUserCollection = "tempUser"
 var userCollection = "user"
@@ -12,7 +15,7 @@ router.get('/temp', function(req, res, next) {
 	let clientTokenInfo = req._clientTokenInfo;
 		clientTokenInfo.iat = new Date(clientTokenInfo.iat * 1000)
 	let tempTokenInfo = req._tempTokenInfo; // { tempUserId: '56407708a79e506720fb859e', iat: 1447065352, iss: 'ttangServer' }
-	let tempUserId = tempTokenInfo.tempUserId; 
+	let tempUserId = tempTokenInfo.tempUserId + "";  // if int new ID will pass
 	let mongoId = "";
 	try {
 		mongoId = new _ObjectID(tempUserId);
@@ -54,7 +57,7 @@ router.get('/temp', function(req, res, next) {
 				"img": String.fromCharCode(59148),
 				"word":"赞一下", 
 				"href":"https://itunes.apple.com/cn/app/liu-li-xue-yuan/id978249810?mt=8",
-				"colorIndex": 5
+				"colorIndex": 0
 			}
 			// goodSet = null
 			res.send({ tempToken: tempToken, token: "", goodSet: goodSet});	
@@ -64,27 +67,80 @@ router.get('/temp', function(req, res, next) {
 	}
 });
 
-// login register
-router.post('/auth', function (req, res) {
+//register
+router.post('/auth/register', function (req, res) {
     // console.log("auth:", req.body)
-    let userName = req.body.userName;
+    let clientTokenInfo = req._clientTokenInfo;
+    let tempTokenInfo = req._tempTokenInfo;
+    let tempUserId = tempTokenInfo.tempUserId;
+    let accountName = req.body.accountName;
     let password = req.body.password;
-    let tempTokenInfo = {
-        tempUserId: 1,
-        hello: "temp" 
-    }
-    let tokenInfo = {
-        userId: 1,
-        hello: "auth",
-        userName: userName
-    }
-    let tempToken = tokenHandler.signServerToken(tempTokenInfo)
-    let authToken = tokenHandler.signServerToken(tokenInfo)
-    var result = { tempToken: tempToken, token: authToken }
-    res.send(result);
+    let user = new User(null, tempUserId, accountName, password);
+    user.save(function () {
+    	let tokenInfo = {
+	        userId: user._id,
+	        accountName: accountName,
+	        userName: user.userName,
+	        userImage: user.userImage,
+	    }
+	    let tempToken = tokenHandler.signServerToken(tempTokenInfo)
+	    let authToken = tokenHandler.signServerToken(tokenInfo)
+	    var result = { tempToken: tempToken, token: authToken }
+	    res.send(result);
+    })
 });
+
+// login
+router.post('/auth', function (req, res) {
+	let clientTokenInfo = req._clientTokenInfo;
+    let tempTokenInfo = req._tempTokenInfo;
+	let tempUserId = tempTokenInfo && tempTokenInfo.tempUserId;
+    let accountName = req.body.accountName;
+    let password = req.body.password;
+    let type = req.body.type
+    if (type === "login") {
+	    let user = new User(null, tempUserId, accountName, password);
+	    user.findWithAccountName(function () {
+	    	if (user.password === password) {
+		    	let tokenInfo = {
+			        userId: user._id,
+			        accountName: accountName,
+			        userName: user.userName,
+			        userImage: user.userImage,
+			    }
+			    let tempToken = tokenHandler.signServerToken(tempTokenInfo)
+			    let authToken = tokenHandler.signServerToken(tokenInfo)
+			    var result = { tempToken: tempToken, token: authToken }
+			    res.send(result);
+			}else {
+				res.send({"err": "password is wrong"})
+			}
+	    })
+	    return
+	}
+	if (type === "register") {
+		let user = new User(null, tempUserId, accountName, password);
+	    user.save(function () {
+	    	let tokenInfo = {
+		        userId: user._id,
+		        accountName: accountName,
+		        userName: user.userName,
+		        userImage: user.userImage,
+		    }
+		    let tempToken = tokenHandler.signServerToken(tempTokenInfo)
+		    let authToken = tokenHandler.signServerToken(tokenInfo)
+		    var result = { tempToken: tempToken, token: authToken }
+		    res.send(result);
+	    })
+	    return
+	}
+	res.status(403).send({err: "type is null"});
+})
 // logout
 router.get('/auth', function (req, res) {
+	//let clientTokenInfo = req._clientTokenInfo;
+    //let tempTokenInfo = req._tempTokenInfo;
+    //let tempToken = tokenHandler.signServerToken(tempTokenInfo);
     res.send({ tempToken: "", token: "" });
 });
 module.exports = router;
