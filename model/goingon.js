@@ -26,10 +26,13 @@ class Goingon { //goingon  只保存快照
         }
         
         this.time = new Date();
-        this.type = type;
+        if (type) {
+            this.type = type;    
+        }
         if (typeId instanceof _ObjectID) {
             this.typeRef = new _DBRef(type, typeId);
         }
+
         this.userId = userId;
 
         if (userName) {
@@ -76,6 +79,14 @@ class Goingon { //goingon  只保存快照
             assert.equal(err, null);
             callback()
         });
+    }
+
+    update (updateInfo, callback) {
+        let collection = _db.collection(goingonCollection);
+        collection.updateMany({userId: this.userId}, {$set: updateInfo}, (err, result) => {
+            assert.equal(err, null);
+            callback && callback()
+        });   
     }
 
 	// Find some documents

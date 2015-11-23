@@ -5,3 +5,4 @@ cd $current
 #git commit -m "update auto commit"
 unset GIT_DIR
 git pull origin master
+npm install

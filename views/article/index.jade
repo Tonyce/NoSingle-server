@@ -23,7 +23,7 @@ html
 				.flex-layout.column.time
 					span#name #{author.userName || "小薇"}
 					span= time
-				img.image(src='https://tower.im/assets/default_avatars/cloud.jpg')
+				img.image(src= author.userImage || 'https://tower.im/assets/default_avatars/cloud.jpg')
 	
 		.content
 			//- :markdown

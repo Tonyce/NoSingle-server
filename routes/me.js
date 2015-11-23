@@ -7,7 +7,7 @@ var router = express.Router();
 
 // router.use(function (req, res, next) {
 // 	let headers = req.headers;
-//     if (req._authorizationToken) {
+//     if (req._authorizationTokenInfo) {
 //     	next();	
 //     }else {
 //     	res.status(401).render('selfErr', { message: '您还未被授权'})

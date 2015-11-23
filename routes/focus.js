@@ -8,7 +8,7 @@ var router = express.Router();
 router.use(function (req, res, next) {
 	// let headers = req.headers;
     // console.log('headers:', headers);
-    // if (req._authorizationToken) {
+    // if (req._authorizationTokenInfo) {
     	next();	
     // }else {
     // 	req.render('error')
