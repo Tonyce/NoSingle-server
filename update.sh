@@ -5,4 +5,4 @@ cd $current
 #git commit -m "update auto commit"
 unset GIT_DIR
 git pull origin master
-npm install
+/root/server/node-v5.0.0-linux-x64/bin/npm install
