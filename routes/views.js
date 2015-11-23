@@ -156,12 +156,9 @@ router.post('/user/images', function (req, res, next) {
 			assert.equal(err, null);
 		}
 		let user = new User(userMongoId);
-		
-
 		let updateInfo = {
 			userImage: userImagePath
 		}
-
 		authorizationTokenInfo.userImage = userImagePath;
 		let authToken = tokenHandler.signServerToken(authorizationTokenInfo)
 		user.update(updateInfo, function (err) {
