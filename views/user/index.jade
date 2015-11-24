@@ -14,30 +14,60 @@ html
 		.content
 			.flex-layout.item
 				.icon-container.center
-					svg.icon.thumb_up(style={fill: '#9e9e9e'})
+					svg.icon(style={fill: '#9e9e9e'})
 						use(xlink:href='#icon-quill')
 				.cmn-t-underline
-					p 别人装饰了你的梦别人装饰了你的梦别人装饰了你的梦别
-					p 人装饰了你的梦别人装饰了你的梦别人装饰
-					p 了你的梦别人装饰了你的梦别人装饰了你的梦别人装饰了你的梦别人装饰了你的梦;
+					p 怀着梦想，做自己喜欢做得事儿
+					p 朝着梦想，努力做自己要做得事儿
+					p 为了梦想，竭尽全力做事儿
+
 			.flex-layout.item
 				.icon-container.center
-					svg.icon.thumb_up(style={fill: '#9e9e9e'})
-						use(xlink:href='#icon-profile')
+					svg.icon(style={fill: '#9e9e9e'})
+						use(xlink:href='#icon-user-tie')
 				.cmn-t-underline
-					p fjakfakfjakslfdja;
+					p 姓名：谷传堂
+					p 身高：178cm
+					p 体重：70kg
+
+
 			.flex-layout.item
 				.icon-container.center
-					svg.icon.thumb_up(style={fill: '#9e9e9e'})
-						use(xlink:href='#icon-location')
+					svg.icon(style={fill: '#9e9e9e'})
+						use(xlink:href='#icon-ic_my_location_black')
 				.cmn-t-underline
-					p fjakfakfjakslfdja;
+					p 北京市
+					
 			.flex-layout.item
 				.icon-container.center
-					svg.icon.thumb_up(style={fill: '#9e9e9e'})
-						use(xlink:href='#icon-ic_thumb_up_black_24px')
+					svg.icon(style={fill: '#9e9e9e'})
+						use(xlink:href='#icon-address-book')
 				.cmn-t-underline
-					p fjakfakfjakslfdja;
+					p 山东省济宁市
+
+
+			.flex-layout.item
+				.icon-container.center
+					svg.icon(style={fill: '#9e9e9e'})
+						use(xlink:href='#icon-envelope')
+				.cmn-t-underline
+					p#email D_ttang@163.com 
+					p 
+						span#sendEmail 发邮件给Ta
+
+			.flex-layout.item
+				.icon-container.center
+					svg.icon(style={fill: '#9e9e9e'})
+						use(xlink:href='#icon-mortar-board')
+				.cmn-t-underline
+					p 大学：
+					li 山东科技大学（资源2009级）
+					p 高中：
+					li 济宁市实验中学（2005级）
+					
+
+			
+			
 			//- .cmn-t-underline
 			//- 	p fjakfakfjakslfdja;
 			//- .cmn-t-underline
@@ -46,5 +76,9 @@ html
 			//- 	p fjakfakfjakslfdja;
 			//- h4 user
 		include add.jade
+
+		br
+		br
+
 		script
 			include user.js

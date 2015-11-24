@@ -1,7 +1,7 @@
 
 window.onload = function () {
-	console.log("load...")
-	var underlines = document.getElementsByClassName('cmn-t-underline')
+
+	var underlines = document.getElementsByClassName('cmn-t-underline');
 	for (var i = 0; i < underlines.length; i++) {
 		var underline = underlines[i];
 		(function(underline, i){
@@ -13,14 +13,25 @@ window.onload = function () {
 			}, 500 * i)
 		})(underline, i)
 	};
-	// var timer = setTimeout(function () {
-	// 	// var underLine = document.getElementById('underline');
-	// 	console.log("before:",underline.className)
-	// 	underLine.className = underLine.className + " animate";	
-	// 	console.log(underline.className)
-	// 	clearTimeout(timer)
-	// }, 100)
+
+	var sendEmail = document.getElementById('sendEmail');
+	sendEmail.onclick = function () {
+		var email = document.getElementById('email').innerText;
+		window.webkit.messageHandlers.userEmail.postMessage({"message":"Hello there", "email": email});
+	}
+	
+	var addFriend = document.getElementById('addFriend');
+	addFriend.onclick = function () {
+		window.webkit.messageHandlers.userAddFriend.postMessage({"message":"addFriend", "email":"382361909@qq.com"});
+	}
+	var focus = document.getElementById('focus');
+	focus.onclick = function () {
+		// window.webkit.messageHandlers.userProfile.postMessage({"message":"focus", "email":"382361909@qq.com"});
+	}
 }
+
+
+
 
 // var body = document.getElementsByTagName('body')
 // document.addEventListener("DOMContentLoaded", function(event) {

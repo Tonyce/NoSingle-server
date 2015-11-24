@@ -119,6 +119,7 @@ router.post('/auth', function (req, res) {
 	    return
 	}
 	if (type === "register") {
+		console.log(req.body)
 		let user = new User(null, tempUserId, accountName, password);
 	    user.save(function () {
 	    	let tokenInfo = {

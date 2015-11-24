@@ -12,6 +12,7 @@
     "jade": "^1.9.2",
     "jsonwebtoken": "^5.4.1",
     "jstransformer-markdown": "^1.1.0",
+    "marked": "^0.3.5",
     "mongodb": "^2.0.48",
     "ws": "^0.8.0"
   }

@@ -1,5 +1,5 @@
 doctype html
-- var title = "jade"
+//- - var title = "jade"
 html
 	head
 		meta(charset='utf-8')
@@ -12,39 +12,22 @@ html
 			include article.css
 	body
 		include article.svg
-		pre
-			code function a() {console.log(#{title})}
+		
 		header
 			.main.flex-layout
-				div 你装饰了我的世界的实际四儿
+				div= title
 				.flex-layout.h-center.label-container
-					#more.label.flex-layout.center 黑科技
+					#more.label.flex-layout.center= category
 			#info.info.flex-layout.h-center(author-id= author._id author-name= author.userName || "some" author-image= author.userImage || "https://tower.im/assets/default_avatars/cloud.jpg" author-word= author.believeWord)
 				.flex-layout.column.time
 					span#name #{author.userName || "小薇"}
 					span= time
 				img.image(src= author.userImage || 'https://tower.im/assets/default_avatars/cloud.jpg')
 	
-		.content
-			//- :markdown
-			//- 	#{article.content}
+		.content!= marked(content)
 
-			p 别人装饰了你的梦，你装饰了我的世界，别人装饰了你的梦，你装饰了我的世界别人装饰了你的梦，你装饰了我的世界
-			p 别人装饰了你的梦，你装饰了我的世界，别人装饰了你的梦，你装饰了我的世界别人装饰了你的梦，你装饰了我的世界
-			p 别人装饰了你的梦别人装饰了你的梦，你装饰了我的世界，别人装饰了你的梦，你装饰了我的世界别人装饰了你的梦，你装饰了我的世界
-			p 别人装饰了你的梦，你装饰了我的世界，别人装饰了你的梦，你装饰了我的世界别人装饰了你的梦，你装饰了我的世界
-			p 别人装饰了你的梦，你装饰了我的世界，别人装饰了你的梦，你装饰了我的世界别人装饰了你的梦，你装饰了我的世界
-			p 别人装饰了你的梦，你装饰了我的世界，别人装饰了你的梦，你装饰了我的世界别人装饰了你的梦，你装饰了我的世界
-			p 别人装饰了你的梦，你装饰了我的世界，别人装饰了你的梦，你装饰了我的世界别人装饰了你的梦，你装饰了我的世界
-			p 别人装饰了你的梦，你装饰了我的世界，别人装饰了你的梦，你装饰了我的世界别人装饰了你的梦，你装饰了我的世界
-			ul 
-				li 别人装饰了你的梦，
-				li 你装饰了我的世界，
-				li 别人装饰了你的梦，
-				li 你装饰了我的世
-				ul
-					li 界别人装饰了你的梦，
-					li 你装饰了我的世界
+		br
+		br
 		.actions.flex-layout.h-center
 			#thumbUp.icon-container.center
 				svg.icon.thumb_up(style={fill: '#9e9e9e'})
@@ -52,9 +35,32 @@ html
 			#favorite.icon-container.center
 				svg.icon.favorite(style={fill: '#9e9e9e'})
 					use(xlink:href='#icon-ic_favorite_black_24px')
+		
+		br
+	
+		//- pre
+			code "Stay Hungry Stay Foolish"
+
 		script hljs.initHighlightingOnLoad();
 		script
 			include article.js
+
+		//- p 别人装饰了你的梦，你装饰了我的世界，别人装饰了你的梦，你装饰了我的世界别人装饰了你的梦，你装饰了我的世界
+		//- p 别人装饰了你的梦，你装饰了我的世界，别人装饰了你的梦，你装饰了我的世界别人装饰了你的梦，你装饰了我的世界
+		//- p 别人装饰了你的梦别人装饰了你的梦，你装饰了我的世界，别人装饰了你的梦，你装饰了我的世界别人装饰了你的梦，你装饰了我的世界
+		//- p 别人装饰了你的梦，你装饰了我的世界，别人装饰了你的梦，你装饰了我的世界别人装饰了你的梦，你装饰了我的世界
+		//- p 别人装饰了你的梦，你装饰了我的世界，别人装饰了你的梦，你装饰了我的世界别人装饰了你的梦，你装饰了我的世界
+		//- p 别人装饰了你的梦，你装饰了我的世界，别人装饰了你的梦，你装饰了我的世界别人装饰了你的梦，你装饰了我的世界
+		//- p 别人装饰了你的梦，你装饰了我的世界，别人装饰了你的梦，你装饰了我的世界别人装饰了你的梦，你装饰了我的世界
+		//- p 别人装饰了你的梦，你装饰了我的世界，别人装饰了你的梦，你装饰了我的世界别人装饰了你的梦，你装饰了我的世界
+		//- ul 
+		//- 	li 别人装饰了你的梦，
+		//- 	li 你装饰了我的世界，
+		//- 	li 别人装饰了你的梦，
+		//- 	li 你装饰了我的世
+		//- 	ul
+		//- 		li 界别人装饰了你的梦，
+		//- 		li 你装饰了我的世界
 
 
 

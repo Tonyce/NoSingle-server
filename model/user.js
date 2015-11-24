@@ -86,6 +86,7 @@ class User {
 			return;
 		}
 		let collection = _db.collection(userCollection);
+		console.log(this)
 		collection.insertOne(this, (err, result) => {
 			assert.equal(err, null);
 			assert.equal(1, result.insertedCount);

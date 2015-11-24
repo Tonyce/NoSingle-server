@@ -3,24 +3,34 @@
 
 var express = require('express');
 var router = express.Router();
+var assert = require('assert');
+var marked = require('marked');
+marked.setOptions({
+	renderer: new marked.Renderer(),
+	gfm: true,
+	tables: true,
+	breaks: false,
+	pedantic: false,
+	sanitize: true,
+	smartLists: true,
+	smartypants: false
+});
 var Article = require('../model/article');
 var User = require('../model/user');
 var Goingon = require('../model/goingon');
-var assert = require('assert');
 var tokenHandler = require('../tokenHandler');
-
 var ossHelper = require('../helper/aliOss.js')
 var dateFormat = require('../helper/dateExtension').format
 
 // 
-router.use(function (req, res, next) {
-	let headers = req.headers;
-    if (req._authorizationTokenInfo) {
-    	next();	
-    }else {
-    	res.status(403).send()
-    }
-})
+// router.use(function (req, res, next) {
+// 	let headers = req.headers;
+//     if (req._authorizationTokenInfo) {
+//     	next();	
+//     }else {
+//     	res.status(403).send()
+//     }
+// })
 
 router.get('/', function(req, res, next) {
   	res.render('index', { title: 'NoSingle' });
@@ -35,6 +45,8 @@ router.get('/article/:id', function(req, res, next) {
 		// console.log(article)
 		let time = new Date(article.time);
 		article.time = dateFormat(time, "yyyy-MM-dd hh:mm:ss");
+		// article.content = marked(article.content);
+		article.marked = marked;
 		res.render('article/index', article);	
 	});
 });
