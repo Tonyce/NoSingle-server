@@ -19,7 +19,7 @@ header {
   margin: 10px;
   padding: 10px 0;
 }
-.cmn-t-underline p {
+.cmn-t-underline p,.cmn-t-underline li {
 	opacity: 0.0;
 	transition: all 0.5s linear;
 	transition-delay: 0.2s;
@@ -58,6 +58,9 @@ header {
 
 .animate.cmn-t-underline p {
 	opacity: 1.0;
+}
+.animate.cmn-t-underline li {
+  opacity: 1.0;
 }
 
 

@@ -23,14 +23,14 @@ var ossHelper = require('../helper/aliOss.js')
 var dateFormat = require('../helper/dateExtension').format
 
 // 
-// router.use(function (req, res, next) {
-// 	let headers = req.headers;
-//     if (req._authorizationTokenInfo) {
-//     	next();	
-//     }else {
-//     	res.status(403).send()
-//     }
-// })
+router.use(function (req, res, next) {
+	let headers = req.headers;
+    if (req._authorizationTokenInfo) {
+    	next();	
+    }else {
+    	res.status(403).send()
+    }
+})
 
 router.get('/', function(req, res, next) {
   	res.render('index', { title: 'NoSingle' });
@@ -98,15 +98,19 @@ router.get('/user/:id', function(req, res, next) {
 	let user = new User(userId);
 	user.find(function (err) {
 		assert.equal(err, null);
+		if (user.aboutDream) {
+			user.aboutDream = user.aboutDream.replace(/\n/g, "<br>")
+		}
+		// console.log(user)
 		res.render('user/index', user);	
 	})
 });
 
 router.post('/user', function(req, res, next) {
 	let body = req.body;
-	// console.log(body);
+	//console.log(body);
 	let authorizationTokenInfo = req._authorizationTokenInfo;
-	console.log(authorizationTokenInfo);
+	//console.log(authorizationTokenInfo);
 	let uId = authorizationTokenInfo.userId;
 	let userId = "";
 	try {

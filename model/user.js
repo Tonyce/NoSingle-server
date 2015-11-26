@@ -23,10 +23,13 @@ class User {
 			collection.findOne({_id: this._id}, (err, doc) => {
 				assert.equal(err, null);
 				assert.notEqual(null, doc);
+				// console.log("doc",doc)
 				this.accountName = doc.accountName;
 				this.userName = doc.userName;
 				this.userImage = doc.userImage;
 				this.believeWord = doc.believeWord;
+				this.aboutDream = doc.aboutDream;
+				this.experience = doc.experience;
 	            callback()
 	        })
 		}else {

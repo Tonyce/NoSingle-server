@@ -17,9 +17,16 @@ html
 					svg.icon(style={fill: '#9e9e9e'})
 						use(xlink:href='#icon-quill')
 				.cmn-t-underline
-					p 怀着梦想，做自己喜欢做得事儿
-					p 朝着梦想，努力做自己要做得事儿
-					p 为了梦想，竭尽全力做事儿
+					p!= aboutDream
+
+			.flex-layout.item
+				.icon-container.center
+					svg.icon(style={fill: '#9e9e9e'})
+						use(xlink:href='#icon-mortar-board')
+				.cmn-t-underline
+					each value, key in experience
+						p= key + ': '
+						li= value
 
 			.flex-layout.item
 				.icon-container.center
@@ -55,15 +62,7 @@ html
 					p 
 						span#sendEmail 发邮件给Ta
 
-			.flex-layout.item
-				.icon-container.center
-					svg.icon(style={fill: '#9e9e9e'})
-						use(xlink:href='#icon-mortar-board')
-				.cmn-t-underline
-					p 大学：
-					li 山东科技大学（资源2009级）
-					p 高中：
-					li 济宁市实验中学（2005级）
+			
 					
 
 			
