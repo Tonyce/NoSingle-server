@@ -80,11 +80,21 @@ router.post('/article', function (req, res, next) {
 	 		assert.equal(err, null);
 			res.send({"ok":"ok"})	
 		})
-	})
+	});
+
+	Goingon.insertCategory(category, function (err, result) {
+		if (!result) {
+			console.error("insertCategory:", result);
+		}
+	});
 })
 
 
-
+router.get('/users', function (req, res, next) {
+	User.findAll(function (err, userIds) {
+		res.send(userIds);
+	})
+});
 
 router.get('/user/:id', function(req, res, next) {
 	// console.log(req.params.id)
@@ -106,11 +116,31 @@ router.get('/user/:id', function(req, res, next) {
 	})
 });
 
+router.get('/user/info/:id', function(req, res, next) {
+	// console.log(req.params.id)
+	let id = req.params.id;
+	let userId = "";
+	try {
+		userId = new _ObjectID(id);
+	}catch (err) {
+		assert.equal(err, null);
+	}
+	let user = new User(userId);
+	user.find(function (err) {
+		assert.equal(err, null);
+		if (user.aboutDream) {
+			user.aboutDream = user.aboutDream.replace(/\n/g, "<br>")
+		}
+		// console.log(user)
+		res.send(user);	
+	})
+});
+
 router.post('/user', function(req, res, next) {
 	let body = req.body;
-	//console.log(body);
+	// console.log(body);
 	let authorizationTokenInfo = req._authorizationTokenInfo;
-	//console.log(authorizationTokenInfo);
+	// console.log(authorizationTokenInfo);
 	let uId = authorizationTokenInfo.userId;
 	let userId = "";
 	try {

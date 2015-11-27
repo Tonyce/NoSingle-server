@@ -16,7 +16,16 @@ class User {
 		this.believeWord = believeWord;
 	}
 
-	// Find some documents
+
+	static findAll (callback) {
+		let collection = _db.collection(userCollection);
+		collection.find({}, {"_id": 1}).toArray( (err, docs) => {
+			assert.equal(err, null);
+			// 随机
+            callback(null, docs)
+        })
+	}
+
 	find (callback) {
 		if (this._id instanceof _ObjectID) {
 			let collection = _db.collection(userCollection);
@@ -40,6 +49,7 @@ class User {
 	findWithAccountName (callback) {
 		let collection = _db.collection(userCollection);
 		if (!this.tempId) {
+			console.error("findWithAccountName without tempId")
 			collection.findOne({accountName: this.accountName}, (err, doc) => {
 				assert.equal(err, null);
 				assert.notEqual(null, doc);
@@ -48,6 +58,12 @@ class User {
 				this.userName = doc.userName;
 				this.userImage = doc.userImage;
 				this.believeWord = doc.believeWord;
+				this.aboutDream = doc.aboutDream;
+				this.experience = doc.experience;
+				// console.log(doc)
+				this.friendAddNeedCheck = doc.friendAddNeedCheck;
+    			this.allowSystemNotify = doc.allowSystemNotify;
+    			this.showLocation = doc.showLocation;
 	            callback()
 	        })
 		}else {
@@ -59,17 +75,6 @@ class User {
 								        //     upsert: true
 								        // }, 
 				(err, result) => {
-		        	// console.log(result)
-		     		//  { value: 
-					  //  { _id: 564fef2eb326f20f21743dd8,
-					  //    tempId: 564f3049261369dc1d810b0a,
-					  //    accountName: 'd_ttang',
-					  //    password: 'ttang',
-					  //    userName: null,
-					  //    userImage: null,
-					  //    believeWord: null },
-					  // lastErrorObject: { updatedExisting: true, n: 1 },
-					  // ok: 1 }
 			        assert.equal(null, err);
 			        assert.equal(1, result.lastErrorObject.n);
 			        let doc = result.value;
@@ -78,6 +83,13 @@ class User {
 					this.userName = doc.userName;
 					this.userImage = doc.userImage;
 					this.believeWord = doc.believeWord;
+					this.aboutDream = doc.aboutDream;
+					this.experience = doc.experience;
+
+					this.friendAddNeedCheck = doc.friendAddNeedCheck;
+    				this.allowSystemNotify = doc.allowSystemNotify;
+    				this.showLocation = doc.showLocation;
+					// console.log(doc)
 			        callback()
 		    });
 	    }

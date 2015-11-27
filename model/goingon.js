@@ -97,13 +97,15 @@ class Goingon { //goingon  只保存快照
 		if (isGreat) {
 			queryCondition = {
 				"_id": {
-					"$gt": _id
+					"$gt": _id,
+                    "$ne": 1
 				}
 			}
 		}else if (this.id) {
 			queryCondition = {
 				"_id": {
-					"$lt": _id
+					"$lt": _id,
+                    "$ne": 1
 				}
 			}
 		}
@@ -115,6 +117,36 @@ class Goingon { //goingon  只保存快照
     			callback(docs);
 		});
 	}
+
+    static findWithCategory(category, callback) {
+        let collection = _db.collection(goingonCollection);
+        let queryCondition = {
+            "$and": [{"category": category}, {"_id": {"$ne": 1}}]
+        }
+         // { $and: [ { price: { $ne: 1.99 } }, { price: { $exists: true } }
+        collection.find(queryCondition).sort({"_id": -1}).limit(20).toArray(
+            (err, docs) => {
+                assert.equal(err, null);
+                // console.log("Found the following records");
+                // console.dir(docs);
+                callback(null, docs);
+        });
+    }
+
+    static insertCategory (category, callback) {
+        let collection = _db.collection(goingonCollection);
+        collection.updateOne({"_id":1}, {$addToSet:{category: category}}, {upsert: true, w: 1}, (err, result) => {
+            assert.equal(err, null);
+            callback(null, result)
+        });
+    }
+    static getCategory (callback) {
+        let collection = _db.collection(goingonCollection);
+        collection.findOne({"_id":1}, (err, doc) => {
+            assert.equal(err, null);
+            callback(null, doc)
+        });
+    }
 }
 
 module.exports = Goingon;

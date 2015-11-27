@@ -3,54 +3,56 @@
 
 var express = require('express');
 var router = express.Router();
-// var Article = require('../model/article');
+var Focus = require('../model/focus');
+
 // 
 router.use(function (req, res, next) {
-	// let headers = req.headers;
-    // console.log('headers:', headers);
-    // if (req._authorizationTokenInfo) {
+	let headers = req.headers;
+    if (req._authorizationTokenInfo) {
     	next();	
-    // }else {
-    // 	req.render('error')
-    // }
-})
-// /* GET home page. */
-router.get('/', function(req, res, next) {
-	var userBaseInfos = [
-		{
-			"_id":"fdsdf",
-			"name":"tt",
-			"imageUrl":"https://tower.im/assets/default_avatars/nightfall.jpg",
-			"believeWord" : "好好学习，天天向上"
-		},
-		{
-			"_id":"fdsdf",
-			"name":"tonyce",
-			"imageUrl":"https://tower.im/assets/default_avatars/cloud.jpg",
-			"believeWord" : "好好学习，天天向上"
-		},
-		{
-			"_id":"fdsdf",
-			"name":"jjing",
-			"imageUrl":"https://tower.im/assets/default_avatars/nightfall.jpg",
-			"believeWord" : "好好学习，天天向上"
-		}
-	]
-  	res.send(userBaseInfos);
+    }else {
+    	req.render('error')
+    }
 });
-// router.get('/article/:id', function(req, res, next) {
-// 	let id = req.params.id
-// 	let mongoId = new _ObjectID(id);
-// 	let article = new Article(mongoId, "article");
-// 	console.log(`articleId: ${article.id}`)
-// 	article.find(function () {
-// 		console.log(article)
-// 		res.render('article/index', article);	
-// 		// console.log(this.content);		
-// 	})
-// });
-// router.get('/user/:id', function(req, res, next) {
-// 	// console.log(req.params.id)
-//   	res.render('user/index', { title: 'Express' });
-// });
+
+router.get('/', function(req, res, next) {
+	let userId = req._authorizationTokenInfo.userId
+	let mongoId = new _ObjectID(userId);
+	let focus = new Focus(mongoId);
+	focus.find((err, result) => {
+		let sendData = result && result.focus || [];
+		res.send(sendData);
+	});
+});
+
+router.delete('/:id', function (req, res, next) {
+
+	let userId = req._authorizationTokenInfo.userId
+	let mongoId = new _ObjectID(userId);
+
+	let removeId = req.params.id;
+	let removeMongoId = new _ObjectID(removeId);
+	console.log(userId, removeId)
+
+	let focus = new Focus(mongoId);
+	focus.delete(removeMongoId, (err, result) => {
+		// console.log(result)
+		// result: { ok: 1, nModified: 1, n: 1 }
+		res.send({"ok":"ok"})
+	});
+})
+router.put('/:id', function (req, res, next) {
+
+	let userId = req._authorizationTokenInfo.userId
+	let mongoId = new _ObjectID(userId);
+
+	let insertId = req.params.id;
+	let insertMongoId = new _ObjectID(insertId);
+
+	let focus = new Focus(mongoId);
+	focus.insert(insertMongoId, (err, result) => {
+		// console.log(result)
+		res.send({"ok":"ok"})
+	});
+})
 module.exports = router;

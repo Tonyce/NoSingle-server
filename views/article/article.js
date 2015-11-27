@@ -11,7 +11,7 @@ var infoButton = document.getElementById('info');
             "imageUrl": authorImage,
             "believeWord": authorWord
         }
-        window.webkit.messageHandlers.myApp.postMessage(authorBaseInfo);
+        window.webkit.messageHandlers.authorBaseInfo.postMessage(authorBaseInfo);
     }
 
 var thumbUpButton = document.getElementById('thumbUp');
@@ -37,5 +37,21 @@ favoriteButton.onclick = function () {
     }else {
         document.getElementById("favorite").children[0].style.fill = "#9E9E9E";
         document.getElementById("favorite").style["border-color"] = "#9E9E9E"
+    }
+}
+
+var visibility = document.getElementById('visibility');
+visibility.onclick = function () {
+    var currentColor = document.getElementById("visibility").children[0].style.fill;
+    var info = document.getElementById('info');
+    var userId = info.getAttribute("author-id");
+    if (currentColor == "#9e9e9e" || currentColor == "rgb(158, 158, 158)") {
+        document.getElementById("visibility").style["border-color"] = "#2196F3"
+        document.getElementById("visibility").children[0].style.fill = "#2196F3";
+        window.webkit.messageHandlers.userFocus.postMessage({"message":"focus", "userId": userId});
+    }else {
+        document.getElementById("visibility").children[0].style.fill = "#9E9E9E";
+        document.getElementById("visibility").style["border-color"] = "#9E9E9E"
+        window.webkit.messageHandlers.userFocus.postMessage({"message":"concelFocus", "userId": userId});
     }
 }

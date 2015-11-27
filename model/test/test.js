@@ -11,6 +11,8 @@ global._db = "";
 
 var User = require("../user.js")
 var Article = require("../article.js")
+var Focus = require("../focus")
+var Goingon = require("../goingon")
 
 var mongoUrl = 'mongodb://localhost:27017/Test';
 MongoClient.connect(mongoUrl, function(err, db) {
@@ -26,7 +28,29 @@ MongoClient.connect(mongoUrl, function(err, db) {
     
     // insertNewArticle() ok
     // findArticle() ok
+    // 
+    // insertFocus() ok
+    // deleteFocus()
+    // findFocus() ok
+    // 
+    // insertCategory() ok
+    // getCategory() ok
 });
+
+function insertCategory () {
+	Goingon.insertCategory("code", function (err, result) {
+		console.log(result && result.result);
+		_db.close()
+	})
+}
+
+function getCategory () {
+	Goingon.getCategory(function (err, doc) {
+		console.log(doc)
+		// category: [ '诗文', '诗歌', 'code' ] 
+		_db.close()
+	})
+}
 
 function insertNewUser () {
 	let tempId = new _ObjectID("564f3049261369dc1d810b0a")
@@ -74,4 +98,31 @@ function findArticle () {
 		console.log("find article pass...", article)
 	})
 }
+
+function insertFocus () {
+	let id = new _ObjectID("5653d25067828ab92f44ffd7")
+	let focus = new Focus(id)
+	let focusId = new _ObjectID("564f3049261369dc1d810b0a")
+	focus.insert(focusId, (err, result) => {
+		console.log(result.result)
+	})
+}
+
+function deleteFocus () {
+	let id = new _ObjectID("564f3049261369dc1d810b0a")
+	let focus = new Focus(id)
+	let focusId = new _ObjectID("565000159572b9072aea62a2")
+	focus.delete(focusId, (err, result) => {
+		console.log(result)
+	})
+}
+
+function findFocus () {
+	let id = new _ObjectID("564f3049261369dc1d810b0a")
+	let focus = new Focus(id)
+	focus.find((err, result) => {
+		console.log(result)
+	})
+}
+
 

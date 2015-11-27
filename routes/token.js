@@ -110,7 +110,20 @@ router.post('/auth', function (req, res) {
 			    }
 			    let tempToken = tokenHandler.signServerToken(tempTokenInfo)
 			    let authToken = tokenHandler.signServerToken(tokenInfo)
-			    var result = { tempToken: tempToken, token: authToken }
+
+			    // console.log(user)
+			    let userBaseInfo = {
+			    	"userName": user.userName,
+			    	"userImage": user.userImage,
+			    	"believeWord": user.believeWord,
+			    	"aboutDream": user.aboutDream,
+			    	"experience": user.experience,
+			    	"friendAddNeedCheck" : user.friendAddNeedCheck,
+			    	"allowSystemNotify": user.allowSystemNotify,
+    				"showLocation" : user.showLocation
+			    }
+
+			    var result = { tempToken: tempToken, token: authToken, userBaseInfo: userBaseInfo }
 			    res.send(result);
 			}else {
 				res.send({"err": "password is wrong"})

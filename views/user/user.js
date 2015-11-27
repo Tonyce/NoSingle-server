@@ -26,7 +26,7 @@ window.onload = function () {
 	}
 	var focus = document.getElementById('focus');
 	focus.onclick = function () {
-		// window.webkit.messageHandlers.userProfile.postMessage({"message":"focus", "email":"382361909@qq.com"});
+		window.webkit.messageHandlers.userFocus.postMessage({"message":"focus"});
 	}
 }
 
