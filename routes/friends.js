@@ -32,8 +32,8 @@ router.get('/friends', function(req, res, next) {
 		    "lastWordTime": ""
 		},
 		{
-			"_id"         : "56444350631c99b8f707a337",
-		    "userName"        : "TTang",
+			"_id"         : "5653e96ff46d5a8535b10912",
+		    "userName"        : "h-jjing",
 		    "userImageUrl"    : "https://tower.im/assets/default_avatars/nightfall.jpg",
 		    "believeWord" : "学习，好好。。",
 		    "lastWord"    : "",

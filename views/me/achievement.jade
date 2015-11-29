@@ -1,5 +1,5 @@
 doctype html
-- var achievements = [{"key": "a", "image":"d"},{"key": "b"},{"key": "c"}]
+// - var achievements = [{"key": "a", "image":"d"},{"key": "b"},{"key": "c"}]
 html
 	head
 		meta(charset='utf-8')
@@ -14,12 +14,12 @@ html
 		include achievement.svg
 		#achievements
 			each item in achievements
-				.cell.flex-layout.column(onclick="cellClick(this, event)" id= item.key)
+				.cell.flex-layout.column(onclick="cellClick(this, event)" id= item._id)
 					.labelC.flex-layout.v-between.h-center
-						.label= '诗词'
+						.label= item.category
 						.time 2012-12-21 12:23
 					.content.flex-layout.row
-						div 轻轻的我走了，正如我悄悄的来。。。轻轻的我走了，正如我悄悄的来。。。
+						div= item.title
 						if item.image
 							div(style={width: '150px'})
 						else

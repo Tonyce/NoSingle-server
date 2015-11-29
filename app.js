@@ -103,11 +103,16 @@ app.use(function(err, req, res, next) {
 //  res.send('Hello World');
 // })
 
+let ids = [
+    "5640e3522bde38033066758d",
+    "56444350631c99b8f707a337",
+    "5653e96ff46d5a8535b10912"
+]
 wss.on('connection', function connection(ws) {
 	var location = url.parse(ws.upgradeReq.url, true);
-    console.log("ws.upgradeReq")
-    console.log(location)
-    console.log(ws.upgradeReq.headers)
+    // console.log("ws.upgradeReq")
+    // console.log(location)
+    // console.log(ws.upgradeReq.headers)
 	// you might use location.query.access_token to authenticate or share sessions
 	// or ws.upgradeReq.headers.cookie (see http://stackoverflow.com/a/16395220/151312)
 	
@@ -128,10 +133,10 @@ wss.on('connection', function connection(ws) {
         timer = setInterval(function () {
             let nowTime = new Date().getTime()
             
-            let randomFriendId = getRandomIntInclusive(1,5)
+            let randomFriendId = getRandomIntInclusive(0,2)
             let result = {
                 "type": "friend",
-                "fromId": randomFriendId,
+                "fromId": ids[randomFriendId],
                 "toId": "me",
                 "messageTime" : nowTime,
                 "message": randomFriendId + " -- " + nowTime
@@ -149,7 +154,6 @@ wss.on('connection', function connection(ws) {
 
 function broadcast(data, ws, id) {
     wss.clients.forEach(function each(client) {
-        console.log("broadcast....")
         if ( client && client.readyState === 1) {
             client.send(data);    
         }else {

@@ -43,6 +43,19 @@ class Article {
 		});
 	}
 
+	static findWithAuthorId (authorId, callback) {
+		if ((authorId instanceof _ObjectID) === false) {
+			callback({err: "this._id is illeagel"})
+			return;
+		}
+		let collection = _db.collection(articleCollection);	
+		collection.find({"author.$id": authorId}).toArray(function(err, docs){
+	        assert.equal(null, err);
+	        callback(null, docs);
+		});
+
+	}
+
 	save (callback) {
 		if (this._id !== null) {
 			callback({err: "this._id !== null"})

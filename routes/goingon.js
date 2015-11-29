@@ -32,25 +32,30 @@ router.get('/', function(req, res, next) {
 			"http://static.iweekapi.com/uploads/2015/08/640x250.jpg",
 			"http://static.iweekapi.com/uploads/2015/08/east-ep-a81-4325116.jpg"
 		]
-		res.send(data);
-		return;
-	})
-});
-
-router.get('/category', function (req, res, next) {
-
-	Goingon.getCategory( function (err, doc) {
-		// console.log("doc:", doc);
-		let data = {
-			"category" : [ 
+		data.category = [ 
 		        "诗文", 
 		        "诗歌", 
 		        "code"
 		    ]
-		}
 		res.send(data);
-	});
-})
+		// return;
+	})
+});
+
+// router.get('/category', function (req, res, next) {
+
+// 	Goingon.getCategory( function (err, doc) {
+// 		// console.log("doc:", doc);
+// 		let data = {
+// 			"category" : [ 
+// 		        "诗文", 
+// 		        "诗歌", 
+// 		        "code"
+// 		    ]
+// 		}
+// 		res.send(data);
+// 	});
+// })
 
 router.get('/:category', function(req, res, next) {
 	let category = req.params.category;
