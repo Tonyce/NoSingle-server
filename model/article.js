@@ -53,7 +53,6 @@ class Article {
 	        assert.equal(null, err);
 	        callback(null, docs);
 		});
-
 	}
 
 	save (callback) {
